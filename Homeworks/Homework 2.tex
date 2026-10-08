@@ -1,0 +1,58 @@
+\documentclass[10pt,letterpaper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{enumerate}
+\usepackage[margin=0.5in]{geometry}
+\usepackage{xcolor}
+
+\definecolor{TangGreen}{HTML}{377459}
+
+\title{Design and Analysis of Algorithms Homework 2}
+\author{Jeremy Chen}
+\begin{document}
+	\maketitle
+
+\noindent\textbf{Problem 1. \hfill (20 points)} 
+
+\noindent\textbf{The greedy set algorithm is not better than} $\log n$. Recall the set cover problem. We are given a universe $U$ of $n$ elements and a collection $\mathcal{S} = \{ S_{1}, \dots, S_{m} \}$ of subsets of $U$ whose union is $U$. We must choose as few of these subsets as possible so that their union is all of $U$. The greedy algorithm repeatedly selects a set covering the largest number of still-uncovered elements, until nothing remains uncovered.
+
+In lecture we proved that greedy uses at most $k\ln n$ sets, where $k$ is the number of sets in an optimal cover. This problem shows that the analysis cannot be improved beyond a constant factor. 
+
+\begin{enumerate}[(a)]
+
+\item \textbf{(5 points)} Give a mall explicit instance on which greedy does not return an optimal cover. State the sets greedy selects, the sets an optimal cover selects, and both sizes.
+
+\color{TangGreen}
+
+\color{black}
+
+\item \textbf{(11 points)} For each integer $k \geq 1$, construct an instance with $n = 2^{k + 1} - 2$ elements in which 
+
+\begin{itemize}
+
+\item some cover uses only 2 sets, and
+
+\item the greedy algorithm uses $k$-sets.
+
+\end{itemize}
+
+Describe the universe and collection precisely, then prove both claims. You may assume greedy breaks ties arbitrarily; your construction should not depend on how. 
+
+\color{TangGreen}
+Start by resolving the the base case, where $k = 1$. For this case, there will be $2^{1 + 1} - 2 = 2$ elements. Therefore, the universe is
+$$U = \{ \ell_{1}, \ell_{2} \}$$
+and the collections are 
+$$C_{1} = \{ \ell_{1} \}, C_{2} = \{ \ell_{2} \}, C_{3} = \{ \ell_{1}, \ell_{2} \}$$
+Greedy will select the set with the largest number of uncovered elements, $C_{3}$, and use $k = 1$ sets. Some cover could use two sets $C_{1}$ and $C_{2}$. For another case, where $k = 2$, there are $2^{2 + 1} - 1 = 6$ elements. The universe is 
+$$U = \{ \ell_{1}, \ell_{2}, \dots, \ell_{6} \}$$
+and the collection is then defined as 
+$$C_{1} = \{ \ell{1}, \ell_{3}, \ell_{5} \}, C_{2} = \{ \ell_{2}, \ell_{4}, \ell_{6} \}, C_{3} = \{ \ell_{1}, \ell_{2}, \ell_{3}, \ell_{4} \}, C_{4} = \{ \ell_{5}, \ell_{6} \}$$
+At this point, a pattern emerges. A universe would contain $2^{k + 1} - 2$ unique elements, and the collection consists of two sets with $2^{k} - 1$ elements each, and another $k$ disjunct sets, with $2^{k}$, $2^{k - 1}$, and so on elements per.
+
+At the start, the greedy algorithm would select the set with $2^{k}$, since it has more uncovered elements than the sets with $2^{k} - 1$ elements. 
+\color{black}
+
+\end{enumerate}
+
+\end{document}
